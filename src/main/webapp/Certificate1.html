@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Certificate Generator</title>
+<style>
+
+ul {
+
+  list-style-type: none;
+
+  margin: 0;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  background-color: white;
+
+}
+
+
+
+li {
+
+  float: right;
+
+}
+
+
+
+li a {
+
+  display: block;
+
+  color: purple;
+
+  font:bold;
+
+  text-align: center;
+
+  text-space:20px;
+
+  text-size:30px;
+
+  padding: 20px 22px;
+
+  text-decoration: none;
+
+}
+li a:hover {
+
+  background-color: grey;
+
+}
+
+ .b
+   {
+   background-color:#96DED1;
+   }  
+ .parent {
+ 
+ margin-left:1px;
+  padding: 2rem 2rem;
+  text-align: center;
+
+  width: 90%;
+}
+.c {
+  display: inline-block;
+
+  padding: 1rem 1rem;
+  margin-top:300px;
+  height: 300px;
+  width: 600px;
+  text-align: center;
+  vertical-align: middle;
+
+  background-image:url("C1.jpg");
+  background-size:cover;
+
+}
+
+.child1 {
+  display: inline-block;
+  border: 1px solid white;
+  padding: 1rem 1rem;
+  height: 500px;
+  width: 500px;
+  text-align: center;
+  vertical-align: middle;
+  float:right;
+}
+
+</style>
+<body class="b">
+
+
+
+<nav class="navbar">
+
+      <ul>
+      <li><a  href="FeedBack.html"><b>FeedBack</b></a></li>
+   <li><a href="Contact.html"><b>Contact</b></a></li>
+     <li><a href="Login.html"><b>Login</b></a></li>
+    <li><a href="About.html"><b>About</b></a></li>
+        <li><a href="#FirstPage.html"><b>Home</b></a></li>
+    
+ 
+
+</ul>
+</nav>
+
+    <div class='parent'>
+    
+    
+        <div class='c'>
+
+        </div>
+        <div class='child1'>
+  <h1>Certificate Generator</h1>
+  
+  <label for="name">Enter your name:</label>
+  <input type="text" id="name">
+  <br>
+  <br>
+  <hr>
+  
+   <label for="age">Enter your Age:</label>
+  <input type="text" id="age">
+   <br>
+  <br>
+  <hr>
+  
+  
+   <label for="skills">Enter your skills:</label>
+  <input type="text" id="skills">
+    <br>
+  <br>
+  <hr>
+  
+  
+   <label for="position">Enter your position:</label>
+  <input type="text" id="position">
+    <br>
+  <br>
+
+  
+  <button onclick="generateCertificate()">Generate Certificate</button>
+    <br>
+  <br>
+  <hr>
+  
+
+  <!-- Canvas element to draw the certificate -->
+  <canvas id="certificateCanvas" width="800" height="600" style="display: none;"></canvas>
+
+  <!-- Hidden link to download the certificate -->
+  <a id="downloadLink" style="display: none;"></a>
+
+  <script>
+    function generateCertificate() {
+      var name = document.getElementById('name').value;
+      var skills = document.getElementById('skills').value;
+      var posititon = document.getElementById('position').value;
+    
+          
+          
+              
+
+      // Get the canvas element
+      var canvas = document.getElementById('certificateCanvas');
+      var ctx = canvas.getContext('2d');
+
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw certificate content
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'black';
+      ctx.font = '30px Arial';
+      ctx.fillText('Certificate of Achievement', 200, 100);
+      ctx.font = '20px Arial';
+      ctx.fillText('This certifies that', 250, 200);
+      ctx.font = 'bold 30px Arial';
+      ctx.fillText(name, 300, 250);
+      ctx.font = '20px Arial';
+      ctx.fillText('Has successfully completed the course', 200, 300);
+      ctx.font = '30px Arial';
+      ctx.fillText(name, 300, 350);
+      ctx.font = 'italic 20px Arial';
+      ctx.fillText('Date: ' + new Date().toDateString(), 300, 350);
+
+      // Convert canvas to image
+      var image = canvas.toDataURL('image/png');
+
+      // Create download link
+      var downloadLink = document.getElementById('downloadLink');
+      downloadLink.href = image;
+      downloadLink.download = 'certificate.png';
+      downloadLink.click();
+    }
+  </script>
+</body>
+</html>
